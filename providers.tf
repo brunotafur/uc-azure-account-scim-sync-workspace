@@ -25,17 +25,20 @@ locals {
 }
 
 # TODO: update your databricks connection details here
+#provider "databricks" {
+#  host       = "https://accounts.azuredatabricks.net"
+#  account_id = "c3d0c960-58a1-4b23-b7f5-de6ca6fc1e2b"
+#}
 provider "databricks" {
-  host       = "https://accounts.azuredatabricks.net"
-  account_id = "c3d0c960-58a1-4b23-b7f5-de6ca6fc1e2b"
+  host  = "https://adb-3923253141441028.8.azuredatabricks.net/"
 }
 
 # TODO: update this with storage where state will be kept
 terraform {
   backend "azurerm" {
-    subscription_id      = "e54189ca-0061-4994-a1ae-c82d189a0b0e"
-    resource_group_name  = "playground"
-    storage_account_name = "ucadmintfstatedev"
+    subscription_id      = "4a7cb191-ac11-4a59-99b2-3cc37d85af8e"
+    resource_group_name  = "databricks-btafur-rg-0211"
+    storage_account_name = "testbtstorageaccount"
     container_name       = "tfstate"
     key                  = "scim-sync.tfstate"
     use_azuread_auth     = true

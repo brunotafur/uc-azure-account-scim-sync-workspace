@@ -37,10 +37,10 @@ data "azuread_group" "this" {
 }
 
 # read admin group members
-data "azuread_group" "admins" {
-  for_each     = toset(local.account_admins_aad_group_names)
-  display_name = each.value
-}
+#data "azuread_group" "admins" {
+#  for_each     = toset(local.account_admins_aad_group_names)
+#  display_name = each.value
+#}
 
 locals {
   all_groups_members_ids = toset(flatten([for group in values(data.azuread_group.this) : group.members]))
@@ -48,10 +48,10 @@ locals {
     for name, data in data.azuread_group.this :
     data.object_id => data
   }
-  account_admin_groups_by_id = {
-    for name, data in data.azuread_group.admins :
-    data.object_id => data
-  }
+  #account_admin_groups_by_id = {
+  #  for name, data in data.azuread_group.admins :
+  #  data.object_id => data
+  #}
 
 }
 
@@ -111,10 +111,10 @@ locals {
 output "aad_state" {
   value = {
     aad_group_names                = local.aad_group_names
-    account_admins_aad_group_names = local.account_admins_aad_group_names
+    #account_admins_aad_group_names = local.account_admins_aad_group_names
 
     groups_by_id               = local.groups_by_id
-    account_admin_groups_by_id = local.account_admin_groups_by_id
+    #account_admin_groups_by_id = local.account_admin_groups_by_id
 
     spns_by_id  = local.spns_by_id
     users_by_id = local.users_by_id
